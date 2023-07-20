@@ -10,7 +10,11 @@ The access key and secrey key of the selected profile will be set as the keys of
 ## Installation
 
 ```
-TODO
+git clone https://github.com/delanovictor/aws-profile-manager.git
+
+cd aws-profile-manager
+
+go install
 ```
 --- 
 ## Example
