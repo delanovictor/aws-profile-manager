@@ -13,8 +13,9 @@ import (
 
 // listCmd represents the list command
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List the profiles on your aws/credentials file",
+	Use:     "list",
+	Aliases: []string{"ls"},
+	Short:   "List the profiles on your aws/credentials file",
 	Long: `
 List the profiles on your aws/credentials file.
 The profile that is also set as the default will be marked as selected.
