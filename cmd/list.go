@@ -39,8 +39,12 @@ If the default profile is not present as a labeled profile, it will be shown as 
 		for i, v := range file_lines {
 
 			if v == "[default]" {
-				has_default = true
-				continue
+				if i == 0 {
+					has_default = true
+					continue
+				} else {
+					panic("The default profile must be the first one, edit your .aws/credentials file.")
+				}
 			}
 
 			if strings.HasPrefix(v, "[") {

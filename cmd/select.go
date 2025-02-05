@@ -34,9 +34,14 @@ The Access Key and Secrey Key of the selected profile will be set as the keys of
 		has_default := false
 
 		for i, v := range file_lines {
+
 			if v == "[default]" {
-				has_default = true
-				continue
+				if i == 0 {
+					has_default = true
+					continue
+				} else {
+					panic("The default profile must be the first one, edit your .aws/credentials file.")
+				}
 			}
 
 			if v == match {
