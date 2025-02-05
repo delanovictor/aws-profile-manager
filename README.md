@@ -10,18 +10,25 @@ The access key and secrey key of the selected profile will be set as the keys of
 ## Installation
 
 ```
+# IMPORTANT: Create backup of credentials file
+
+cp ~/.aws/credentials ~/.aws/credentials.bak
+
 git clone https://github.com/delanovictor/aws-profile-manager.git
 
 cd aws-profile-manager
 
 go install
+
+# Add to .bashrc
+export PATH=$PATH:~/go/bin/
 ```
 --- 
 ## Example
 
 
 ```
-aws-profile list
+aws-profile ls
 
 //   [profile1]
 // =>[profile2]
@@ -31,7 +38,7 @@ aws-profile select profile1
 
 // Selected [profile1]
 
-aws-profile list
+aws-profile ls
 
 // =>[profile1]
 //   [profile2]

@@ -31,11 +31,21 @@ The Access Key and Secrey Key of the selected profile will be set as the keys of
 		match := fmt.Sprintf("[%v]", profile)
 
 		selected_profile_index := -1
+		has_default := false
 
 		for i, v := range file_lines {
+			if v == "[default]" {
+				has_default = true
+				continue
+			}
+
 			if v == match {
 				selected_profile_index = i
 			}
+		}
+
+		if !has_default {
+			panic("You need to have a default profile to use the tool. To create a default profile, simply run 'aws configure' without the --profile flag.")
 		}
 
 		if selected_profile_index == -1 {

@@ -34,10 +34,12 @@ If the default profile is not present as a labeled profile, it will be shown as 
 		current_ak := file_lines[ak_index]
 
 		selected_profile := "[default]"
+		has_default := false
 
 		for i, v := range file_lines {
 
 			if v == "[default]" {
+				has_default = true
 				continue
 			}
 
@@ -51,6 +53,10 @@ If the default profile is not present as a labeled profile, it will be shown as 
 
 				fmt.Println(v)
 			}
+		}
+
+		if !has_default {
+			panic("You need to have a default profile to use the tool. To create a default profile, simply run 'aws configure' without the --profile flag.")
 		}
 
 		ak_snippet := strings.ReplaceAll(current_ak, "aws_access_key_id=", "")
