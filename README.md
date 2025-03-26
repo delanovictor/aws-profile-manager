@@ -7,6 +7,14 @@ The access key and secret key of the selected profile will be set as the keys of
 
 ---
 
+## Requisites
+
+Go version 1.20 or greater.
+
+https://go.dev/doc/install
+
+---
+
 ## Installation
 
 > [!WARNING]  
