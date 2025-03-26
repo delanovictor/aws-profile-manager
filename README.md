@@ -3,7 +3,7 @@
 ## Description
 Choose your default AWS profile from your list of existing profiles.
 
-The access key and secrey key of the selected profile will be set as the keys of the default profile
+The access key and secret key of the selected profile will be set as the keys of the default profile
 
 ---
 
