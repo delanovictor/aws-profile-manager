@@ -1,48 +1,59 @@
 package filehandler
 
 import (
-	"fmt"
-	"io/fs"
 	"os"
+	"bufio"
+    "path/filepath"
 	"strings"
+	"runtime"
 )
 
 func ReadCredentials() ([]string, error) {
-	dirname, err := os.UserHomeDir()
+	user_directory, err := os.UserHomeDir()
 
 	if err != nil {
 		return nil, err
 	}
 
-	fileSystem := os.DirFS(dirname)
+    credentials_path := filepath.Join(user_directory, ".aws/credentials")
 
-	data, err := fs.ReadFile(fileSystem, ".aws/credentials")
-
+	file, err := os.Open(credentials_path)
 	if err != nil {
 		return nil, err
 	}
+	defer file.Close()
 
-	file_text := string(data)
+	s := bufio.NewScanner(file)
 
-	file_text = strings.Replace(file_text, "\n\n", "\n", -1)
+	var file_lines []string
 
-	file_lines := strings.Split(file_text, "\n")
+	for s.Scan() {
+		line := s.Text()
+
+		file_lines = append(file_lines, line)
+	}
 
 	return file_lines, nil
 }
 
 func WriteCredentials(file_lines []string) error {
-	dirname, err := os.UserHomeDir()
+	user_directory, err := os.UserHomeDir()
 
 	if err != nil {
 		return err
 	}
 
-	file_text := strings.Join(file_lines, "\n")
+	var file_text string
+	
+	if runtime.GOOS == "windows" {
+		file_text = strings.Join(file_lines, "\r\n")
+	} else {
+		file_text = strings.Join(file_lines, "\n")
+	}
 
 	data := []byte(file_text)
 
-	output_path := fmt.Sprintf("%v%v", dirname, "/.aws/credentials")
+    credentials_path := filepath.Join(user_directory, ".aws/credentials")
 
-	return os.WriteFile(output_path, data, 0644)
+	return os.WriteFile(credentials_path, data, 0644)
 }
