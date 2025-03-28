@@ -11,9 +11,10 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "aws-profile",
-	Short: "A tool that helps managing multiple AWS profiles",
-	Long:  `A tool that helps managing multiple AWS profiles`,
+	Use:     "aws-profile",
+	Aliases: []string{"awsp"},
+	Short:   "A tool that helps managing multiple AWS profiles",
+	Long:    `A tool that helps managing multiple AWS profiles`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
