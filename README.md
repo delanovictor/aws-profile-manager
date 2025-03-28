@@ -41,6 +41,9 @@ go install
 
 # Linux only
 export PATH=$PATH:~/go/bin/
+
+#Suggested alias
+alias awsp=aws-profile
 ```
 --- 
 ## Example
@@ -52,7 +55,7 @@ aws-profile ls
 // =>[profile2]
 //   [profile3]
 
-aws-profile select profile1
+aws-profile set profile1
 
 // Selected [profile1]
 
