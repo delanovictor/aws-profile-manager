@@ -42,7 +42,7 @@ go install
 # Linux only
 export PATH=$PATH:~/go/bin/
 
-#Suggested alias
+# Suggested alias
 alias awsp=aws-profile
 ```
 --- 
